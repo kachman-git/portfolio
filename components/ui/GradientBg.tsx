@@ -41,28 +41,20 @@ export const BackgroundGradientAnimation = ({
   const [tgY, setTgY] = useState(0);
   useEffect(() => {
     if (typeof window !== undefined) {
-      const body1 = document.body;
-      body1.style.setProperty(
+      const body = document.body;
+      body.style.setProperty(
         "--gradient-background-end",
         gradientBackgroundEnd
       );
 
-      const body2 = document.body;
-      const body3 = document.body;
-      const body4 = document.body;
-      const body5 = document.body;
-      const body6 = document.body;
-      const body7 = document.body;
-      const body8 = document.body;
-      const body9 = document.body;
-      body2.style.setProperty("--first-color", firstColor);
-      body3.style.setProperty("--second-color", secondColor);
-      body4.style.setProperty("--third-color", thirdColor);
-      body5.style.setProperty("--fourth-color", fourthColor);
-      body6.style.setProperty("--fifth-color", fifthColor);
-      body7.style.setProperty("--pointer-color", pointerColor);
-      body8.style.setProperty("--size", size);
-      body9.style.setProperty("--blending-value", blendingValue);
+      body.style.setProperty("--first-color", firstColor);
+      body.style.setProperty("--second-color", secondColor);
+      body.style.setProperty("--third-color", thirdColor);
+      body.style.setProperty("--fourth-color", fourthColor);
+      body.style.setProperty("--fifth-color", fifthColor);
+      body.style.setProperty("--pointer-color", pointerColor);
+      body.style.setProperty("--size", size);
+      body.style.setProperty("--blending-value", blendingValue);
     }
   }, []);
 

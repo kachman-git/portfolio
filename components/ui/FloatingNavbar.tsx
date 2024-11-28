@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import {
   motion,
   AnimatePresence,
@@ -9,7 +10,7 @@ import {
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-export const FloatingNav = ({
+const FloatingNav = ({
   navItems,
   className,
 }: {
@@ -21,24 +22,25 @@ export const FloatingNav = ({
   className?: string;
 }) => {
   const { scrollYProgress } = useScroll();
-
   const [visible, setVisible] = useState(true);
 
-  useMotionValueEvent(scrollYProgress, "change", (current) => {
-    if (typeof current === "number") {
-      let direction = current! - scrollYProgress.getPrevious()!;
+  useEffect(() => {
+    const unsubscribe = useMotionValueEvent(
+      scrollYProgress,
+      "change",
+      (current) => {
+        if (typeof current === "number") {
+          let direction = current! - scrollYProgress.getPrevious()!;
 
-      if (scrollYProgress.get() < 0.05) {
-        setVisible(true);
-      } else {
-        if (direction < 0) {
-          setVisible(true);
-        } else {
-          setVisible(false);
+          if (scrollYProgress.get() < 0.05) {
+            setVisible(true);
+          } else {
+            setVisible(direction < 0);
+          }
         }
       }
-    }
-  });
+    );
+  }, [scrollYProgress]);
 
   return (
     <AnimatePresence mode="wait">
@@ -82,3 +84,5 @@ export const FloatingNav = ({
     </AnimatePresence>
   );
 };
+
+export default FloatingNav;

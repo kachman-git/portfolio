@@ -25,21 +25,23 @@ const FloatingNav = ({
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = useMotionValueEvent(
-      scrollYProgress,
-      "change",
-      (current) => {
-        if (typeof current === "number") {
-          let direction = current! - scrollYProgress.getPrevious()!;
+    if (!scrollYProgress) return;
+    const handleScrollChange = (current: number) => {
+      if (typeof current === "number") {
+        const previous = scrollYProgress.getPrevious() || 0;
+        const direction = current - previous;
 
-          if (scrollYProgress.get() < 0.05) {
-            setVisible(true);
-          } else {
-            setVisible(direction < 0);
-          }
+        if (scrollYProgress.get() < 0.05) {
+          setVisible(true);
+        } else {
+          setVisible(direction < 0);
         }
       }
-    );
+    };
+
+    useMotionValueEvent(scrollYProgress, "change", handleScrollChange);
+
+    // No need for unsubscribe here, Framer Motion handles cleanup internally
   }, [scrollYProgress]);
 
   return (

@@ -108,7 +108,7 @@ export const projects = [
     des: "A responsive Website Next.js, TypeScript, and Tailwind CSS. Were you can search for any images",
     img: "/pixabay.png",
     iconLists: ["/re.svg", "/tail.svg", "/ts.svg"],
-    link: "pixabay-gallary.vercel.app",
+    link: "https://pixabay-gallary.vercel.app",
   },
   {
     id: 4,
@@ -116,7 +116,7 @@ export const projects = [
     des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
     img: "/p4.svg",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
-    link: "i-phone-rust.vercel.app",
+    link: "https://i-phone-rust.vercel.app",
   },
 ];
 
